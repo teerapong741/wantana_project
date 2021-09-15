@@ -1,0 +1,30 @@
+<app-loading *ngIf="loading"></app-loading>
+<div
+  class="
+    container-fluid
+    d-flex
+    justify-content-center
+    align-items-center
+    h-100
+    p-0 p-md-3 p-lg-5
+  "
+>
+  <div class="row">
+    <div class="card card-body col-12 col-md-8 col-lg-5">
+      <div class="row">
+        <div class="col-12 text-center">
+          <span class="fs-1 fw-1">Login</span>
+        </div>
+        <div class="col-12 mt-5">
+          <input type="text" class="form-control" placeholder="username" />
+        </div>
+        <div class="col-12">
+          <input type="text" class="form-control mt-3" placeholder="password" />
+        </div>
+        <div class="col-12 mt-5">
+          <button class="btn btn-info w-100" (click)="onLogin()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
