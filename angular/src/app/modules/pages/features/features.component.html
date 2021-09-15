@@ -31,19 +31,6 @@
   </nav>
 </div>
 <router-outlet></router-outlet>
-<p-sidebar [(visible)]="showSidebar" [baseZIndex]="999">
-  <h3>Left Sidebar</h3>
 
-  <p-button
-    type="button"
-    (click)="showSidebar = false"
-    label="Save"
-    styleClass="p-button-success me-2"
-  ></p-button>
-  <p-button
-    type="button"
-    (click)="showSidebar = false"
-    label="Cancel"
-    styleClass="p-button-secondary me-2"
-  ></p-button>
-</p-sidebar>
+<!-- TODO: Content Menu Sidebar -->
+<p-sidebar [(visible)]="showSidebar" [baseZIndex]="999"> Menu </p-sidebar>
