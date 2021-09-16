@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import {TableModule} from 'primeng/table';
 
 import { ManageMessengerLineComponent } from './manage-messenger-line/manage-messenger-line.component';
 import { ManageStatusComponent } from './manage-status/manage-status.component';
@@ -29,6 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
     SidebarModule,
     ButtonModule,
     RippleModule,
+    TableModule,
   ],
 })
 export class FeaturesModule {}
