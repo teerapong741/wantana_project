@@ -1,7 +1,44 @@
-.navbar{
-    background: #546694;
+.logo {
+  color: #ffffff;
+  width: 65px;
+  height: 65px;
 }
 
-.contain{
-    margin: 90px 40px 40px 40px;
+.image-profile {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.font-logo {
+  font-family: "Satisfy", cursive;
+}
+
+a {
+  cursor: pointer;
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.nav-link-main {
+  color: #ffffff;
+
+  &:hover {
+    border-radius: 0;
+    background-color: white;
+    color: #000000;
+  }
+}
+
+.nav-link.active {
+  border-radius: 0;
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: bold;
+}
+
+.sub-nav {
+  background-color: rgba(223, 223, 223, 0.143);
 }
