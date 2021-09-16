@@ -1,5 +1,5 @@
 <div class="fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar ">
     <div class="d-flex justify-content-between w-100">
       <button
         pButton
@@ -21,7 +21,7 @@
           pButton
           pRipple
           icon="fas fa-bell"
-          class="p-button p-button-warning me-sm-3 me-1"
+          class="p-button p-button-white me-sm-3 me-1"
           type="button"
         ></button>
         <!-- <i class=" text-warning fs-5 me-3"></i> -->
@@ -29,7 +29,7 @@
           <button
             pButton
             pRipple
-            class="p-button p-button-warning me-3 btn-sm dropdown-toggle"
+            class="p-button p-button-white me-3 btn-sm dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-haspopup="true"
@@ -37,13 +37,13 @@
             style="padding: 2px 10px"
           >
             <img
-              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNBs9g5o_UsSJ9BkCDhXT0uj4Mxn6UtXMbqA&usqp=CAU" 
               alt="user profile"
               class="image-profile me-2"
             />
             <span class="me-3 text-white">username user</span>
           </button>
-          <div class="dropdown-menu text-center">
+          <div class="dropdown-menu text-left">
             <a
               class="dropdown-item"
               routerLink="./profile"
@@ -60,19 +60,11 @@
         </div>
       </div>
     </div>
-
-    <!-- <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#btnToggleNavbar"
-      aria-controls="btnToggleNavbar"
-      aria-expanded="false"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
   </nav>
-  <router-outlet></router-outlet>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  
 </div>
 
 
@@ -80,7 +72,7 @@
 <p-sidebar
   [(visible)]="showSidebar"
   [baseZIndex]="999"
-  [style]="{ backgroundColor: 'black' }"
+  [style]="{ backgroundColor: '#28252F' }"
 >
   <div class="row">
     <div
