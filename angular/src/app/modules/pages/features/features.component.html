@@ -1,13 +1,13 @@
 <div class="fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="collapse navbar-collapse" id="btnToggleNavbar">
+    <div class="d-flex justify-content-between w-100">
       <button
         pButton
         pRipple
         type="button"
         class="
           p-button-secondary p-button-text
-          text-dark
+          text-white
           fs-4
           fw-bolder
           p-0
@@ -16,9 +16,52 @@
         (click)="showSidebar = true"
         icon="fas fa-bars"
       ></button>
+      <div class="me-1">
+        <button
+          pButton
+          pRipple
+          icon="fas fa-bell"
+          class="p-button p-button-warning me-sm-3 me-1"
+          type="button"
+        ></button>
+        <!-- <i class=" text-warning fs-5 me-3"></i> -->
+        <div class="btn-group">
+          <button
+            pButton
+            pRipple
+            class="p-button p-button-warning me-3 btn-sm dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="padding: 2px 10px"
+          >
+            <img
+              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+              alt="user profile"
+              class="image-profile me-2"
+            />
+            <span class="me-3 text-white">username user</span>
+          </button>
+          <div class="dropdown-menu text-center">
+            <a
+              class="dropdown-item"
+              routerLink="./profile"
+              (click)="onToggleMenu('none')"
+              >My Profile</a
+            >
+            <a
+              class="dropdown-item"
+              routerLink="./../login"
+              (click)="onToggleMenu('none')"
+              >ออกจากระบบ</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
 
-    <button
+    <!-- <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
@@ -27,10 +70,285 @@
       aria-expanded="false"
     >
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
   </nav>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
 
 <!-- TODO: Content Menu Sidebar -->
-<p-sidebar [(visible)]="showSidebar" [baseZIndex]="999"> Menu </p-sidebar>
+<p-sidebar
+  [(visible)]="showSidebar"
+  [baseZIndex]="999"
+  [style]="{ backgroundColor: 'black' }"
+>
+  <div class="row">
+    <div
+      class="col-12 d-flex justify-content-center"
+      routerLink="./dashboard"
+      style="cursor: pointer"
+    >
+      <img
+        src="./../../../../assets/images/washing-machine.png"
+        alt="Logo"
+        class="logo"
+      />
+    </div>
+    <div
+      class="col-12 mt-3 text-center"
+      routerLink="./dashboard"
+      style="cursor: pointer"
+    >
+      <p class="text-white fw-4 fw-bold font-logo">Wantana Laundry</p>
+    </div>
+    <div class="col-12 p-0">
+      <div class="nav flex-column nav-pills">
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./dashboard"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >หน้าหลัก</a
+        >
+        <a class="nav-link my-2" (click)="onToggleMenu('manage-cloth')">
+          <div class="d-flex justify-content-between">
+            <span>จัดการผ้า</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-cloth' || manageClothMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="currentRoute === 'manage-cloth' || manageClothMenu === true"
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth/add-cloth"
+              routerLinkActive="active"
+              >เพิ่มข้อมูลรับผ้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth/edit-cloth"
+              routerLinkActive="active"
+              >แก้ไขข้อมูลรับผ้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth/cloth-list"
+              routerLinkActive="active"
+              >รายการรับผ้า</a
+            >
+          </div>
+        </a>
+        <a class="nav-link my-2" (click)="onToggleMenu('manage-customer')">
+          <div class="d-flex justify-content-between">
+            <span>จัดการข้อมูลลูกค้า</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-customer' ||
+                manageCustomerMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="
+              currentRoute === 'manage-customer' || manageCustomerMenu === true
+            "
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-customer/add-customer"
+              routerLinkActive="active"
+              >เพิ่มข้อมูลลูกค้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-customer/edit-customer"
+              routerLinkActive="active"
+              >แก้ไขข้อมูลลูกค้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-customer/customer-list"
+              routerLinkActive="active"
+              >รายการลูกค้า</a
+            >
+          </div>
+        </a>
+        <a class="nav-link my-2" (click)="onToggleMenu('manage-employee')">
+          <div class="d-flex justify-content-between">
+            <span>จัดการข้อมูลพนักงาน</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-employee' ||
+                manageEmployeeMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="
+              currentRoute === 'manage-employee' || manageEmployeeMenu === true
+            "
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-employee/add-employee"
+              routerLinkActive="active"
+              >เพิ่มข้อมูลพนักงาน</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-employee/edit-employee"
+              routerLinkActive="active"
+              >แก้ไขข้อมูลพนักงาน</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-employee/employee-list"
+              routerLinkActive="active"
+              >รายการพนักงาน</a
+            >
+          </div>
+        </a>
+        <a class="nav-link my-2" (click)="onToggleMenu('manage-damaged-cloth')"
+          ><div class="d-flex justify-content-between">
+            <span>จัดการผ้ามีปัญหา</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-damaged-cloth' ||
+                manageDamagedClothMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="
+              currentRoute === 'manage-damaged-cloth' ||
+              manageDamagedClothMenu === true
+            "
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-damaged-cloth/edit-damaged-cloth"
+              routerLinkActive="active"
+              >แก้ไขข้อมูลผ้าที่มีปัญหา</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-damaged-cloth/damaged-cloth-list"
+              routerLinkActive="active"
+              >รายการผ้าที่มีปัญหา</a
+            >
+          </div>
+        </a>
+        <a class="nav-link my-2" (click)="onToggleMenu('manage-cloth-type')"
+          ><div class="d-flex justify-content-between">
+            <span>จัดการชนิดผ้า</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-cloth-type' ||
+                manageClothTypeMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="
+              currentRoute === 'manage-cloth-type' ||
+              manageClothTypeMenu === true
+            "
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth-type/add-cloth-type"
+              routerLinkActive="active"
+              >เพิ่มข้อมูลชนิดผ้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth-type/cloth-type-list"
+              routerLinkActive="active"
+              >รายการชนิดผ้า</a
+            >
+          </div></a
+        >
+        <a
+          class="nav-link my-2"
+          (click)="onToggleMenu('manage-type-used-cloth')"
+          ><div class="d-flex justify-content-between">
+            <span>จัดการประเภทการใช้งานของผ้า</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-type-used-cloth' ||
+                manageTypeUsedClothMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="
+              currentRoute === 'manage-type-used-cloth' ||
+              manageTypeUsedClothMenu === true
+            "
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-type-used-cloth/add-type-used-cloth"
+              routerLinkActive="active"
+              >เพิ่มข้อมูลประเภทการใช้งานของผ้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-type-used-cloth/type-used-cloth-list"
+              routerLinkActive="active"
+              >รายการประเภทการใช้งานของผ้า</a
+            >
+          </div>
+        </a>
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./manage-messenger-line"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการข้อความไลน์</a
+        >
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./manage-status"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการสถานะ</a
+        >
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./report"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >รายงาน</a
+        >
+      </div>
+    </div>
+  </div>
+</p-sidebar>
