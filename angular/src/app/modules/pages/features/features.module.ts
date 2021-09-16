@@ -9,8 +9,20 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 
+import { ManageMessengerLineComponent } from './manage-messenger-line/manage-messenger-line.component';
+import { ManageStatusComponent } from './manage-status/manage-status.component';
+import { ReportComponent } from './report/report.component';
+import { ProfileComponent } from './profile/profile.component';
+
 @NgModule({
-  declarations: [FeaturesComponent, DashboardComponent],
+  declarations: [
+    FeaturesComponent,
+    DashboardComponent,
+    ManageMessengerLineComponent,
+    ManageStatusComponent,
+    ReportComponent,
+    ProfileComponent,
+  ],
   imports: [
     CommonModule,
     FeaturesRoutingModule,
