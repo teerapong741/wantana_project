@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-2 mb-3 pt-1">
+      <span class="fw-bold">ชนิดผ้า</span>
+    </div>
+    <div class="col-12 col-md-10 mb-3">
+      <p-selectButton
+        [options]="clothTypeOptions"
+        [(ngModel)]="clothOption.cloth_type"
+        optionLabel="label"
+        optionValue="value"
+        (onChange)="
+          clothOption.cloth_type !== 'ผ้าพิเศษ'
+            ? (clothOption.special_type = '')
+            : null
+        "
+      ></p-selectButton>
+    </div>
+
+    <div class="col-12 col-md-2 mb-3 pt-1">
+      <span class="fw-bold">ประเภทการใช้งานผ้า</span>
+    </div>
+    <div class="col-12 col-md-10 mb-3">
+      <p-selectButton
+        [options]="typeUsedClothOptions"
+        [(ngModel)]="clothOption.type_used_cloth"
+        optionLabel="label"
+        optionValue="value"
+      ></p-selectButton>
+    </div>
+
+    <div
+      *ngIf="clothOption.cloth_type === 'ผ้าพิเศษ'"
+      class="col-12 col-md-2 mb-3 pt-1"
+    >
+      <span class="fw-bold">เลือกชนิดผ้าพิเศษ</span>
+    </div>
+    <div
+      *ngIf="clothOption.cloth_type === 'ผ้าพิเศษ'"
+      class="col-12 col-md-10 mb-3"
+    >
+      <p-selectButton
+        [options]="specialTypeOptions"
+        [(ngModel)]="clothOption.special_type"
+        optionLabel="label"
+        optionValue="value"
+      ></p-selectButton>
+    </div>
+
+    <div class="col-12 col-md-2 mb-3 pt-1">
+      <span class="fw-bold">ผ้ามีปัญหา</span>
+    </div>
+    <div class="col-12 col-md-10 mb-3">
+      <p-selectButton
+        [options]="damagedClothOptions"
+        [multiple]="true"
+        [(ngModel)]="damagedCloth"
+        optionLabel="label"
+        optionValue="value"
+        (onChange)="onChangeDamaged(damagedValue.value)"
+        #damagedValue
+      ></p-selectButton>
+    </div>
+
+    <div class="col-12 col-md-2 mb-3 pt-1">
+      <span class="fw-bold">จำนวน</span>
+    </div>
+    <div class="col-12 col-md-10 mb-3">
+      <p-inputNumber
+        [(ngModel)]="clothOption.number"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        inputId="horizontal"
+        spinnerMode="horizontal"
+        [step]="1"
+        [min]="1"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"
+        [inputStyleClass]="'text-center'"
+      >
+      </p-inputNumber>
+    </div>
+  </div>
+
+  <div class="col-12 d-flex justify-content-end">
+    <button
+      *ngIf="addMode"
+      pButton
+      pRipple
+      type="button"
+      label="เพิ่ม"
+      class="p-button-raised p-button-success me-3"
+      (click)="onSubmit()"
+    ></button>
+    <button
+      *ngIf="!addMode"
+      pButton
+      pRipple
+      type="button"
+      label="แก้ไข"
+      class="p-button-raised p-button-warning me-3"
+      (click)="onSubmit()"
+    ></button>
+    <button
+      *ngIf="addMode"
+      pButton
+      pRipple
+      type="button"
+      label="ยกเลิก"
+      class="p-button-raised p-button-danger"
+      (click)="onCancel()"
+    ></button>
+  </div>
+</div>
