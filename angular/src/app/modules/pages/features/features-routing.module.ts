@@ -7,6 +7,10 @@ import { FeaturesComponent } from './features.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageCustomerComponent } from './manage-customer/manage-customer.component';
+import { ManageEmployeeComponent } from './manage-employee/manage-employee.component';
+import { ManageDamagedClothComponent } from './manage-damaged-cloth/manage-damaged-cloth.component';
+import { ManageClothTypeComponent } from './manage-cloth-type/manage-cloth-type.component';
+import { ManageTypeUsedClothComponent } from './manage-type-used-cloth/manage-type-used-cloth.component';
 
 const routes: Routes = [
   {
@@ -24,34 +28,10 @@ const routes: Routes = [
           ),
       },
       { path: 'manage-customer', component: ManageCustomerComponent },
-      {
-        path: 'manage-employee',
-        loadChildren: () =>
-          import('./manage-employee/manage-employee.module').then(
-            (m) => m.ManageEmployeeModule
-          ),
-      },
-      {
-        path: 'manage-damaged-cloth',
-        loadChildren: () =>
-          import('./manage-damaged-cloth/manage-damaged-cloth.module').then(
-            (m) => m.ManageDamagedClothModule
-          ),
-      },
-      {
-        path: 'manage-cloth-type',
-        loadChildren: () =>
-          import('./manage-cloth-type/manage-cloth-type.module').then(
-            (m) => m.ManageClothTypeModule
-          ),
-      },
-      {
-        path: 'manage-type-used-cloth',
-        loadChildren: () =>
-          import('./manage-type-used-cloth/manage-type-used-cloth.module').then(
-            (m) => m.ManageTypeUsedClothModule
-          ),
-      },
+      { path: 'manage-employee', component: ManageEmployeeComponent },
+      { path: 'manage-damaged-cloth', component: ManageDamagedClothComponent },
+      { path: 'manage-cloth-type', component: ManageClothTypeComponent },
+      { path: 'manage-type-used-cloth', component: ManageTypeUsedClothComponent },
       {
         path: 'manage-messenger-line',
         component: ManageMessengerLineComponent,

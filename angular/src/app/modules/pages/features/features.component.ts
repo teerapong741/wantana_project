@@ -3,8 +3,6 @@ import {
   ActivatedRoute,
   Event,
   NavigationEnd,
-  NavigationError,
-  NavigationStart,
   Router,
 } from '@angular/router';
 

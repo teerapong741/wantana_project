@@ -5,6 +5,10 @@ import { FeaturesRoutingModule } from './features-routing.module';
 import { FeaturesComponent } from './features.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageCustomerComponent } from './manage-customer/manage-customer.component';
+import { ManageEmployeeComponent } from './manage-employee/manage-employee.component';
+import { ManageDamagedClothComponent } from './manage-damaged-cloth/manage-damaged-cloth.component';
+import { ManageClothTypeComponent } from './manage-cloth-type/manage-cloth-type.component';
+import { ManageTypeUsedClothComponent } from './manage-type-used-cloth/manage-type-used-cloth.component';
 import { ManageMessengerLineComponent } from './manage-messenger-line/manage-messenger-line.component';
 import { ManageStatusComponent } from './manage-status/manage-status.component';
 import { ReportComponent } from './report/report.component';
@@ -28,6 +32,10 @@ import { PasswordModule } from 'primeng/password';
     FeaturesComponent,
     DashboardComponent,
     ManageCustomerComponent,
+    ManageEmployeeComponent,
+    ManageDamagedClothComponent,
+    ManageClothTypeComponent,
+    ManageTypeUsedClothComponent,
     ManageMessengerLineComponent,
     ManageStatusComponent,
     ReportComponent,
