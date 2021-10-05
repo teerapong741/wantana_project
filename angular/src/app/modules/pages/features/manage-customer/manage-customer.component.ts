@@ -31,25 +31,25 @@ export class ManageCustomerComponent implements OnInit {
     this.customerList = [
       {
         number: 1,
-        code: 'C01',
+        code: 'C0001',
         name: 'ฉีหลิง',
         lastname: 'จาง',
       },
       {
         number: 2,
-        code: 'C02',
+        code: 'C0002',
         name: 'ฮาแฮ',
         lastname: 'ยู',
       },
       {
         number: 3,
-        code: 'C03',
+        code: 'C0003',
         name: ' เฟมีลล่า',
         lastname: 'ไดเอนแพนไทร์',
       },
       {
         number: 4,
-        code: 'C04',
+        code: 'C0004',
         name: 'อานา',
         lastname: 'อันเรท',
       },
