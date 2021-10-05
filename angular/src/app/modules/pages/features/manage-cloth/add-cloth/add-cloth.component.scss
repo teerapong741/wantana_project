@@ -3,6 +3,10 @@
   overflow-y: auto;
 }
 
+.card{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border-radius: 5px;
+}
 .cloth-list-group {
   overflow: auto;
   min-height: 150px;

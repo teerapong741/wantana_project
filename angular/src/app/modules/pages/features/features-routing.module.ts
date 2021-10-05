@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeaturesComponent } from './features.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ManageCustomerComponent } from './manage-customer/manage-customer.component';
 
 const routes: Routes = [
   {
@@ -22,13 +23,7 @@ const routes: Routes = [
             (m) => m.ManageClothModule
           ),
       },
-      {
-        path: 'manage-customer',
-        loadChildren: () =>
-          import('./manage-customer/manage-customer.module').then(
-            (m) => m.ManageCustomerModule
-          ),
-      },
+      { path: 'manage-customer', component: ManageCustomerComponent },
       {
         path: 'manage-employee',
         loadChildren: () =>

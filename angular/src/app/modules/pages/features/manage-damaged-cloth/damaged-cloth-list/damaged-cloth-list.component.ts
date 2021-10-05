@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./damaged-cloth-list.component.scss']
 })
 export class DamagedClothListComponent implements OnInit {
+  
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -138,45 +138,13 @@
             >
           </div>
         </a>
-        <a class="nav-link my-2" (click)="onToggleMenu('manage-customer')">
-          <div class="d-flex justify-content-between">
-            <span>จัดการข้อมูลลูกค้า</span>
-            <i
-              class="fas"
-              [ngClass]="
-                currentRoute === 'manage-customer' ||
-                manageCustomerMenu === true
-                  ? 'fa-caret-down'
-                  : 'fa-caret-left'
-              "
-            ></i>
-          </div>
-          <div
-            *ngIf="
-              currentRoute === 'manage-customer' || manageCustomerMenu === true
-            "
-            class="nav flex-column nav-pills sub-nav mt-2"
-          >
-            <a
-              class="nav-link nav-link-main"
-              routerLink="./manage-customer/add-customer"
-              routerLinkActive="active"
-              >เพิ่มข้อมูลลูกค้า</a
-            >
-            <a
-              class="nav-link nav-link-main"
-              routerLink="./manage-customer/edit-customer"
-              routerLinkActive="active"
-              >แก้ไขข้อมูลลูกค้า</a
-            >
-            <a
-              class="nav-link nav-link-main"
-              routerLink="./manage-customer/customer-list"
-              routerLinkActive="active"
-              >รายการลูกค้า</a
-            >
-          </div>
-        </a>
+        <a
+          class="nav-link nav-link my-2"
+          routerLink="./manage-customer"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการลูกค้า</a
+        >
         <a class="nav-link my-2" (click)="onToggleMenu('manage-employee')">
           <div class="d-flex justify-content-between">
             <span>จัดการข้อมูลพนักงาน</span>
@@ -202,12 +170,7 @@
               routerLinkActive="active"
               >เพิ่มข้อมูลพนักงาน</a
             >
-            <a
-              class="nav-link nav-link-main"
-              routerLink="./manage-employee/edit-employee"
-              routerLinkActive="active"
-              >แก้ไขข้อมูลพนักงาน</a
-            >
+          
             <a
               class="nav-link nav-link-main"
               routerLink="./manage-employee/employee-list"

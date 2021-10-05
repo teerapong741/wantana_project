@@ -3,6 +3,10 @@ import { ManageClothComponent } from './manage-cloth.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {TableModule} from 'primeng/table';
+import {TreeTableModule} from 'primeng/treetable';
+
+
 
 import { ManageClothRoutingModule } from './manage-cloth-routing.module';
 import { AddClothComponent } from './add-cloth/add-cloth.component';
@@ -32,6 +36,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ButtonModule,
     RippleModule,
     DynamicDialogModule,
+    TableModule,
+    TreeTableModule,
   ],
 })
 export class ManageClothModule {}

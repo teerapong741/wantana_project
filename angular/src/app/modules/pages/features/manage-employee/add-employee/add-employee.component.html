@@ -1,1 +1,100 @@
-<p>add-employee works!</p>
+ 
+ <div class="container-fluid">
+  <div class="col-12 ms-2 mt-3 mb-4">
+    <span class="fs-5 fw-bolder">เพิ่มข้อมูลพนักงาน</span>
+  </div>
+    <div class="row mt-3 mb-5">
+      <div class="col-12">
+        <div class="card card-body px-1 px-md-5">
+        <div class="row">
+          <div class="col-12 my-4">
+            <span class="fs-6 fw-bolder">ข้อมูลสำหรับเข้าสู่ระบบ</span>
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>ชื่อผู้ใช้</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              placeholder="กรุณาใส่ชื่อผู้ใช้"
+              style="width: 100%"
+            />
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>รหัสผ่าน</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <p-password [toggleMask]="true"></p-password>
+          </div>
+          <div class="col-12 my-4">
+            <span class="fs-6 fw-bolder">ข้อมูลส่วนตัว</span>
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>EmployeeID</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [disabled]="disabled"
+              placeholder="C01"
+            />
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>หมายเลขบัตรประชาชน</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <p-inputMask mask="9-9999-99999-99-9" placeholder="9-9999-99999-99-9"></p-inputMask>
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>ชื่อ</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              placeholder="กรุณาใส่ชื่อ"
+              style="width: 100%"
+            />
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>นามสกุล</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              placeholder="กรุณาใส่นามสกุล"
+              style="width: 100%"
+            />
+          </div>
+          
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>ที่อยู่</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <textarea rows="5" cols="30" pInputTextarea style="width: 100%"></textarea>
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>เบอร์ติดต่อ</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <input type="text" pInputText pKeyFilter="num" placeholder="หมายเลขโทรศัพท์" style="width: 100%">
+          </div>
+          <div class="col-lg-2 col-md-2 col-12 pt-2">
+            <label>Email</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              style="width: 100%"
+            />
+          </div>
+        </div>
+        <button pButton pRipple type="button" label="บันทึก" class="p-button-raised p-button-success mt-3"></button>
+      </div>
+    </div>
+
+  </div>
