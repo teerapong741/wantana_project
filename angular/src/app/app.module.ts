@@ -13,6 +13,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, AddClothOptionComponent],
@@ -26,6 +28,8 @@ import { RippleModule } from 'primeng/ripple';
     InputNumberModule,
     ButtonModule,
     RippleModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

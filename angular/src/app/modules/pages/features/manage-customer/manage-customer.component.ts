@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  CreateCustomerInput,
+  CustomerService,
+} from 'src/app/shared/services/customer.service';
 export interface Customer {
   number: number;
   code: string;
@@ -9,7 +13,7 @@ export interface Customer {
 @Component({
   selector: 'app-manage-customer',
   templateUrl: './manage-customer.component.html',
-  styleUrls: ['./manage-customer.component.scss']
+  styleUrls: ['./manage-customer.component.scss'],
 })
 export class ManageCustomerComponent implements OnInit {
   customerList: Customer[] = [];
@@ -17,6 +21,9 @@ export class ManageCustomerComponent implements OnInit {
   disabled: boolean = true;
   displayBasic: boolean = false;
   showInfo: boolean = false;
+ 
+  
+
 
   showInfoDialog() {
     this.showInfo = true;
@@ -25,7 +32,27 @@ export class ManageCustomerComponent implements OnInit {
     this.displayBasic = true;
   }
 
-  constructor() { }
+  constructor(private customerService: CustomerService) {}
+
+  createCustomer() {
+    const input: CreateCustomerInput = {
+      idCard: 151222,
+      firstName: 'bubbb',
+      lastName: 'hi',
+      address: 'bangkok',
+      phoneNumber: 12121211,
+      lineId: 95956,
+      email: 're@mail',
+      password: '123',
+    };
+    this.customerService.createCustomer(input).subscribe((result) => {
+      if (!!result.data) {
+        const customer = result.data.createCustomer;
+      } else {
+        // result.errors[0].message
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.customerList = [
@@ -54,12 +81,13 @@ export class ManageCustomerComponent implements OnInit {
         lastname: 'อันเรท',
       },
     ];
+    
     this.cols = [
       { field: 'number', header: 'ลำดับ' },
       { field: 'code', header: 'รหัสลูกค้า' },
       { field: 'name', header: 'ชื่อ' },
       { field: 'lastname', header: 'นามสกุล' },
     ];
+    
   }
-
 }
