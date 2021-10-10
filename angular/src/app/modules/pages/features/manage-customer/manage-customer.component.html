@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading"></app-loading>
 <div class="col-xl-12 mb-5 mb-xl-0 mt-4">
   <div class="col-12 text-left ms-4 mb-4">
     <span class="fs-5 fw-bolder">รายการลูกค้า</span>
@@ -34,7 +35,6 @@
                         pInputText
                         [disabled]="disabled"
                         placeholder="C01"
-                        
                       />
                     </div>
                     <div class="col-lg-2 col-md-2 col-12 pt-2">
@@ -154,7 +154,7 @@
           </td>
           <td>
             <button
-              (click)="showInfoDialog()"
+              (click)="showInfoDialog(rowData['id'])"
               pButton
               pRipple
               icon="pi pi-eye"
@@ -188,10 +188,13 @@
                         <label>หมายเลขบัตรประชาชน</label>
                       </div>
                       <div class="col-lg-10 col-md-10 col-12 mb-3">
-                        <p-inputMask
-                          mask="9-9999-99999-99-9"
-                          placeholder="9-9999-99999-99-9"
-                        ></p-inputMask>
+                        <input
+                          type="text"
+                          pInputText
+                          placeholder="กรุณาใส่เลขบัตรปชช"
+                          [(ngModel)]="idCard"
+                          style="width: 100%"
+                        />
                       </div>
                       <div class="col-lg-2 col-md-2 col-12 pt-2">
                         <label>ชื่อ</label>
@@ -201,6 +204,7 @@
                           type="text"
                           pInputText
                           placeholder="กรุณาใส่ชื่อ"
+                          [(ngModel)]="firstName"
                           style="width: 100%"
                         />
                       </div>
@@ -212,6 +216,7 @@
                           type="text"
                           pInputText
                           placeholder="กรุณาใส่นามสกุล"
+                          [(ngModel)]="lastName"
                           style="width: 100%"
                         />
                       </div>
@@ -225,6 +230,7 @@
                           cols="30"
                           pInputTextarea
                           style="width: 100%"
+                          [(ngModel)]="address"
                         ></textarea>
                       </div>
                       <div class="col-lg-2 col-md-2 col-12 pt-2">
@@ -234,8 +240,8 @@
                         <input
                           type="text"
                           pInputText
-                          pKeyFilter="num"
                           placeholder="หมายเลขโทรศัพท์"
+                          [(ngModel)]="tel"
                           style="width: 100%"
                         />
                       </div>
@@ -243,13 +249,23 @@
                         <label>Email</label>
                       </div>
                       <div class="col-lg-10 col-md-10 col-12 mb-3">
-                        <input type="text" pInputText style="width: 100%" />
+                        <input
+                          type="text"
+                          pInputText
+                          style="width: 100%"
+                          [(ngModel)]="email"
+                        />
                       </div>
                       <div class="col-lg-2 col-md-2 col-12 pt-2">
                         <label>ID Line</label>
                       </div>
                       <div class="col-lg-10 col-md-10 col-12 mb-3">
-                        <input type="text" pInputText style="width: 100%" />
+                        <input
+                          type="text"
+                          pInputText
+                          style="width: 100%"
+                          [(ngModel)]="idLine"
+                        />
                       </div>
                     </div>
                   </div>

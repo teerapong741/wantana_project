@@ -4,16 +4,23 @@ export const CUSTOMERS = gql`
   query customers {
     customers {
       id
-      firstName      
+      firstName
+      lastName
     }
   }
 `;
 
 export const CUSTOMER = gql`
-  query customer($id:Int!){
-      customer(id:$id){
-        id
-        status
-      }
-  } 
-`
+  query customer($id: Int!) {
+    customer(id: $id) {
+      id
+      idCard
+      firstName
+      lastName
+      address
+      phoneNumber
+      lineId
+      email
+    }
+  }
+`;

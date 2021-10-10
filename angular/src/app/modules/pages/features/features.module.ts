@@ -24,6 +24,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputMaskModule } from 'primeng/inputmask';
 import { PasswordModule } from 'primeng/password';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -42,6 +44,7 @@ import { PasswordModule } from 'primeng/password';
     ProfileComponent,
   ],
   imports: [
+    FormsModule,
     CommonModule,
     FeaturesRoutingModule,
     SidebarModule,
@@ -54,6 +57,7 @@ import { PasswordModule } from 'primeng/password';
     KeyFilterModule,
     InputMaskModule,
     PasswordModule,
+    SharedModule
   ],
 })
 export class FeaturesModule {}
