@@ -26,6 +26,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { PasswordModule } from 'primeng/password';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -57,7 +58,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     KeyFilterModule,
     InputMaskModule,
     PasswordModule,
-    SharedModule
+    SharedModule,
+    DropdownModule,
   ],
 })
 export class FeaturesModule {}

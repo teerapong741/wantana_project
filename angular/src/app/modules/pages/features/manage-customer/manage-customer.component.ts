@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   CreateCustomerInput,
   CustomerService,
+  UpdateCustomerInput,
 } from 'src/app/shared/services/customer.service';
 export interface Customer {
   id: number;
@@ -21,53 +22,112 @@ export class ManageCustomerComponent implements OnInit {
   idCard:number = 0;
   lastName:string='';
   address:string='';
-  tel:number=0;
+  tel:string='';
   email:string='';
-  idLine:number=0;
+  idLine:string='';
+  id:string=''
 
   //ตัวแปรอาร์เรย์
   customerList: Customer[] = [];
   cols: any[] = [];
   //ตัวแปร boolean
   disabled: boolean = true;
-  displayBasic: boolean = false;
+  displayAdd: boolean = false;
   showInfo: boolean = false;
  
   loading : boolean = false; //loading page
+  
+  resetData(){
+    this.idCard = 0;
+    this.firstName = '';
+    this.lastName='';
+    this.address='';
+    this.tel='';
+    this.email='';
+    this.idLine='';
+
+  }
   //ฟังก์ชันดูข้อมูล
   showInfoDialog(id:number) {
     this.showInfo = true;
     this.customer(id)
     
+    console.log(id)
+    
   }
   // ฟังก์ชันเพิ่มข้อมูล
-  showBasicDialog() {
-    this.displayBasic = true;
+  showAddDialog() {
+    this.displayAdd = true;
+    this.resetData()
+
   }
 
   constructor(private customerService: CustomerService) {}
 
   createCustomer() {
     const input: CreateCustomerInput = { //ตัวแปรinput
-      idCard: 151222,
-      firstName: 'bubbb',
-      lastName: 'hi',
-      address: 'bangkok',
-      phoneNumber: 12121211,
-      lineId: 95956,
-      email: 're@mail',
-      password: '123',
+      idCard: Number(this.idCard),
+      firstName: this.firstName,
+      lastName: this.lastName,
+      address: this.address,
+      phoneNumber: this.tel,
+      lineId: this.idLine,
+      email: this.email,
+      
     };
+    
     this.loading=true
     this.customerService.createCustomer(input).subscribe((result) => {
       this.loading=false
-      if (!!result.data) {
+      if (!!result.data) { //จะทำงานเมื่อข้อมูลสำเร็จ
         const customer = result.data.createCustomer;
-      } else {
+        window.location.reload()
+      } else { //จะทำงานเมื่อข้อมูลผิดพลาด
         // result.errors[0].message
       }
     });
+    
   }
+
+  updateCustomer(){
+    const output: UpdateCustomerInput={
+      id:Number(this.id),
+      idCard: Number(this.idCard),
+      firstName: this.firstName,
+      lastName: this.lastName,
+      address: this.address,
+      phoneNumber: this.tel,
+      lineId: this.idLine,
+      email: this.email,
+    }
+    this.customerService.updateCustomer(output).subscribe((result) =>{
+      if (!!result.data) { //จะทำงานเมื่อข้อมูลสำเร็จ
+        const customer = result.data.updateCustomer;
+        window.location.reload()
+      } else { //จะทำงานเมื่อข้อมูลผิดพลาด
+        // result.errors[0].message
+      }
+    })
+  }
+
+  // removeCustomer(id:number){
+  //  this.customerService.removeCustomer(id).subscribe((result)=>{
+  //   if (!!result.data) { //จะทำงานเมื่อข้อมูลสำเร็จ
+  //     const customer = result.data.updateCustomer;
+  //     this.id=customer.id
+  //       this.firstName = customer.firstName
+  //       this.idCard = customer.idCard
+  //       this.lastName= customer.lastName
+  //       this.address=customer.address
+  //       this.tel=customer.phoneNumber
+  //       this.email=customer.email
+  //       this.idLine=customer.lineId
+  //     window.location.reload()
+  //   } else { //จะทำงานเมื่อข้อมูลผิดพลาด
+  //     // result.errors[0].message
+  //   }
+  //  })
+  // }
 
   ngOnInit(): void {
     this.customers()//ใช้งานฟังก์ชันcustomers
@@ -89,6 +149,7 @@ export class ManageCustomerComponent implements OnInit {
       this.loading=false
       if (!!result.data) {
         const customer = result.data.customer;
+        this.id=customer.id
         this.firstName = customer.firstName
         this.idCard = customer.idCard
         this.lastName= customer.lastName
@@ -97,7 +158,6 @@ export class ManageCustomerComponent implements OnInit {
         this.email=customer.email
         this.idLine=customer.lineId
         console.log(customer)
-        
       } else {
         // result.errors[0].message
       }
@@ -112,7 +172,7 @@ export class ManageCustomerComponent implements OnInit {
         for(let customer of customers){
           this.customerList.push({
             id:customer.id,
-            code: 'C0001',
+            code: 'C000'+customer.id,  
             name: customer.firstName,
             lastname: customer.lastName,
           })//ประกาศตัวแปรของfontendกับbackendให้เจอกัน

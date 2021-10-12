@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { CREATE_EMPLOYEE } from '../schemas/employee/mutation';
 import { EMPLOYEE, EMPLOYEES } from '../schemas/employee/query';
 
 export interface CreateEmployeeInput {
@@ -8,9 +9,10 @@ export interface CreateEmployeeInput {
   firstName: string;
   lastName: string;
   address: string;
-  phoneNumber: number;
+  phoneNumber: string;
   email: string;
   password: string;
+  role: string;
 }
 
 @Injectable({providedIn:'root'})
@@ -30,5 +32,12 @@ export class EmployeeService{
             variables:{id:id},
             errorPolicy:'all'
         }).valueChanges
+    }
+    createEmployee(createEmployeeInput: CreateEmployeeInput):Observable<any>{
+        return this.apollo.mutate({
+            mutation: CREATE_EMPLOYEE,
+            variables:{createEmployeeInput: createEmployeeInput},
+            errorPolicy:'all'
+        });
     }
 }

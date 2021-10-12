@@ -21,6 +21,7 @@ export const EMPLOYEE = gql`
             phoneNumber
             email
             password  
+            role
         }
     }
 `;

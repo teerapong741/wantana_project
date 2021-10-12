@@ -8,14 +8,14 @@
       <div class="row">
         <div class="col-6 mb-2">
           <p-button
-            (click)="showBasicDialog()"
+            (click)="showAddDialog()"
             label="เพิ่มข้อมูลลูกค้า"
             icon="pi pi-plus"
             iconPos="left"
           ></p-button>
           <p-dialog
             header="เพิ่มข้อมูลลูกค้า"
-            [(visible)]="displayBasic"
+            [(visible)]="displayAdd"
             [style]="{ width: '90vw' }"
             [baseZIndex]="10000"
           >
@@ -27,7 +27,7 @@
                       <span class="fs-6 fw-bolder">ข้อมูลส่วนตัว</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-12 pt-2">
-                      <label>EmployeeID</label>
+                      <label>CustomerID</label>
                     </div>
                     <div class="col-lg-10 col-md-10 col-12 mb-3">
                       <input
@@ -41,10 +41,14 @@
                       <label>หมายเลขบัตรประชาชน</label>
                     </div>
                     <div class="col-lg-10 col-md-10 col-12 mb-3">
-                      <p-inputMask
-                        mask="9-9999-99999-99-9"
-                        placeholder="9-9999-99999-99-9"
-                      ></p-inputMask>
+                      <input
+                          type="text"
+                          pInputText
+                          placeholder="กรุณาใส่เลขบัตรปชช"
+                          [(ngModel)]="idCard"
+                          style="width: 100%"
+                          required autofocus
+                        />
                     </div>
                     <div class="col-lg-2 col-md-2 col-12 pt-2">
                       <label>ชื่อ</label>
@@ -54,6 +58,7 @@
                         type="text"
                         pInputText
                         placeholder="กรุณาใส่ชื่อ"
+                        [(ngModel)]="firstName"
                         style="width: 100%"
                       />
                     </div>
@@ -65,6 +70,7 @@
                         type="text"
                         pInputText
                         placeholder="กรุณาใส่นามสกุล"
+                        [(ngModel)]="lastName"
                         style="width: 100%"
                       />
                     </div>
@@ -77,6 +83,7 @@
                         rows="5"
                         cols="30"
                         pInputTextarea
+                        [(ngModel)]="address"
                         style="width: 100%"
                       ></textarea>
                     </div>
@@ -87,7 +94,7 @@
                       <input
                         type="text"
                         pInputText
-                        pKeyFilter="num"
+                        [(ngModel)]="tel"
                         placeholder="หมายเลขโทรศัพท์"
                         style="width: 100%"
                       />
@@ -96,13 +103,13 @@
                       <label>Email</label>
                     </div>
                     <div class="col-lg-10 col-md-10 col-12 mb-3">
-                      <input type="text" pInputText style="width: 100%" />
+                      <input type="text" pInputText style="width: 100%"[(ngModel)]="email">
                     </div>
                     <div class="col-lg-2 col-md-2 col-12 pt-2">
                       <label>ID Line</label>
                     </div>
                     <div class="col-lg-10 col-md-10 col-12 mb-3">
-                      <input type="text" pInputText style="width: 100%" />
+                      <input type="text" pInputText style="width: 100%" [(ngModel)]="idLine">
                     </div>
                   </div>
                 </div>
@@ -110,12 +117,12 @@
             </div>
             <ng-template pTemplate="footer">
               <p-button
-                (click)="displayBasic = false"
+                (click)="createCustomer()"
                 label="เพิ่มข้อมูล"
                 styleClass="p-button-text"
               ></p-button>
               <p-button
-                (click)="displayBasic = false"
+                (click)="displayAdd = false"
                 label="ยกเลิก"
                 styleClass="p-button-text"
               ></p-button>
@@ -161,7 +168,7 @@
               class="p-button-rounded p-button-success me-4"
             ></button>
             <p-dialog
-              header="ข้อมูลลูกค้า"
+              header="แก้ไขข้อมูลลูกค้า"
               [(visible)]="showInfo"
               [style]="{ width: '90vw' }"
               [baseZIndex]="10000"
@@ -181,6 +188,7 @@
                           type="text"
                           pInputText
                           [disabled]="disabled"
+                          [(ngModel)]="id"
                           placeholder="C01"
                         />
                       </div>
@@ -273,12 +281,12 @@
               </div>
               <ng-template pTemplate="footer">
                 <p-button
-                  (click)="displayBasic = false"
+                  (click)="updateCustomer()"
                   label="แก้ไขข้อมูล"
                   styleClass="p-button-text"
                 ></p-button>
                 <p-button
-                  (click)="displayBasic = false"
+                  (click)="showInfo = false"
                   label="ยกเลิก"
                   styleClass="p-button-text"
                 ></p-button>
@@ -288,6 +296,7 @@
               pButton
               pRipple
               icon="pi pi-trash"
+              
               class="p-button-rounded p-button-warning"
             ></button>
           </td>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/shared/services/employee.service';
+import { CreateEmployeeInput, EmployeeService } from 'src/app/shared/services/employee.service';
 
 export interface Employee {
   id: number;
@@ -19,17 +19,32 @@ export class ManageEmployeeComponent implements OnInit {
   idCard:number = 0;
   lastName:string='';
   address:string='';
-  tel:number=0;
+  tel:string='';
   email:string='';
   password:string='';
+  role:string='ADMIN';
 
    //ตัวแปรอาร์เรย์
   employeeList: Employee[] = [];
   cols: any[] = [];
+  roles: any[]= [{name: 'Admin', code: 'ADMIN'},{name: 'Sub_Admin', code: 'SUB_ADMIN'}]
    //ตัวแปร boolean
   disabled: boolean = true;
   displayBasic: boolean = false;
   showInfo: boolean = false;
+  loading : boolean = false; //loading page
+
+  resetData(){
+    this.idCard = 0;
+    this.firstName = '';
+    this.lastName='';
+    this.address='';
+    this.tel='';
+    this.email='';
+    this.password='';
+    this.role='ADMIN';
+    
+  }
 
   showInfoDialog(id:number) {
     this.showInfo = true;
@@ -37,32 +52,34 @@ export class ManageEmployeeComponent implements OnInit {
   }
   showBasicDialog() {
     this.displayBasic = true;
+    this.resetData()
   }
 
 
-  constructor(private employeeService:EmployeeService) { }
+  constructor(private employeeService:EmployeeService) {}
 
-  // createEmployee() {
-  //   const input: CreateEmployeeInput = { //ตัวแปรinput
-  //     idCard: 12112121211,
-  //     firstName: 'เคออี้',
-  //     lastName: 'โจว',
-  //     address: 'bangkok',
-  //     phoneNumber: 28225444,
-  //     lineId: 13196,
-  //     email: 're@mail',
-  //     password: '1234',
+  createEmployee() {
+    const input: CreateEmployeeInput = { //ตัวแปรinput
+      idCard: Number(this.idCard),
+      firstName: this.firstName,
+      lastName: this.lastName,
+      address: this.address,
+      phoneNumber: this.tel,
+      email: this.email,
+      password: this.password,
+      role: this.role
 
-  //   };
-  //   this.employeeService.createEmployee(input).subscribe((result) => {
+    };
+    this.employeeService.createEmployee(input).subscribe((result) => {
       
-  //     if (!!result.data) {
-  //       const employee = result.data.createEmployee;
-  //     } else {
-  //       // result.errors[0].message
-  //     }
-  //   });
-  // }
+      if (!!result.data) {
+        const employee = result.data.createEmployee;
+        window.location.reload()
+      } else {
+        // result.errors[0].message
+      }
+    });
+  }
   ngOnInit(): void {
     this.employees()
     this.cols = [
@@ -73,9 +90,9 @@ export class ManageEmployeeComponent implements OnInit {
     ];
   }
   employee(id:number){
-    
+    this.loading=true
     this.employeeService.employee(id).subscribe((result) => {
-      
+      this.loading=false
       if (!!result.data) {
         const employee = result.data.employee;
         this.firstName = employee.firstName
@@ -84,6 +101,8 @@ export class ManageEmployeeComponent implements OnInit {
         this.address=employee.address
         this.tel=employee.phoneNumber
         this.email=employee.email
+        this.role=employee.role
+        this.password=employee.password
         console.log(employee)
       } else {
         // result.errors[0].message
@@ -92,9 +111,9 @@ export class ManageEmployeeComponent implements OnInit {
   }
 
   employees(){//ดึงค่าในdbลงตาราง
-    
+    this.loading=true
     this.employeeService.employees().subscribe((result) => {
-      
+      this.loading=false
       if (!!result.data) {
         const employees = result.data.employees;
         for(let employee of employees){

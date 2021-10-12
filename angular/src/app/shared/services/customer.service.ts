@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { CREATE_CUSTOMER, UPDATE_CUSTOMER } from '../schemas/customer/mutation';
+import { CREATE_CUSTOMER, REMOVE_CUSTOMER, UPDATE_CUSTOMER } from '../schemas/customer/mutation';
 import { CUSTOMER, CUSTOMERS } from '../schemas/customer/query';
 
 
@@ -10,11 +10,24 @@ export interface CreateCustomerInput {
   firstName: string;
   lastName: string;
   address: string;
-  phoneNumber: number;
-  lineId: number;
+  phoneNumber: string;
+  lineId: string;
   email: string;
-  password: string;
 }
+
+export interface UpdateCustomerInput {
+  id:number;
+  idCard: number;
+  firstName: string;
+  lastName: string;
+  address: string;
+  phoneNumber: string;
+  lineId: string;
+  email: string;
+  
+}
+
+
 
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
@@ -42,11 +55,20 @@ export class CustomerService {
       errorPolicy: 'all',
     });
   }
-  // updateCustomer(updateCustomerInput: UpdateCustomerInput):Observable<any>{
+
+  updateCustomer(updateCustomerInput: UpdateCustomerInput):Observable<any>{
+    return this.apollo.mutate({
+      mutation: UPDATE_CUSTOMER,
+      variables:{updateCustomerInput:updateCustomerInput},
+      errorPolicy:'all',
+    });
+  }
+
+  // removeCustomer(id: number): Observable<any>{
   //   return this.apollo.mutate({
-  //     mutation: UPDATE_CUSTOMER,
-  //     variables:{updateCustomerInput:updateCustomerInput},
-  //     errorPolicy:'all',
+  //     mutation:REMOVE_CUSTOMER,
+  //     variables:{id:id},
+  //     errorPolicy:'all'
   //   });
   // }
 }

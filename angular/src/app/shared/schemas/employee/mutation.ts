@@ -3,14 +3,14 @@ import { gql } from 'apollo-angular';
 export const CREATE_EMPLOYEE = gql`
     mutation createEmployee($createEmployeeInput: CreateEmployeeInput!){
         createEmployee(createEmployeeInput: $createEmployeeInput){
-            
             idCard
             firstName
             lastName
             address
             phoneNumber
             email
-            password  
+            password 
+            
         }
     }
 `;
@@ -25,7 +25,8 @@ export const UPDATE_EMPLOYEE= gql`
             address
             phoneNumber
             email
-            password  
+            password 
+            
         }
     }
 `;
