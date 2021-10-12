@@ -1,0 +1,260 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="container-fluid">
+  <div class="row mt-3 mb-5">
+    <div class="col-12 text-center mb-4">
+      <span class="fs-5 fw-bolder">เพิ่มข้อมูลการรับผ้า</span>
+    </div>
+    <div class="col-12">
+      <div class="card card-body px-1 px-md-5">
+        <div class="row">
+          <div class="col-12 my-4">
+            <span class="fs-6 fw-bolder">ข้อมูลลูกค้า</span>
+          </div>
+          <div class="col-lg-1 col-md-2 col-12 pt-2">
+            <label>OrderID</label>
+          </div>
+          <div class="col-lg-11 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="orderId"
+              placeholder="Order ID"
+            />
+          </div>
+          <div class="col-lg-1 col-md-2 col-12 pt-2">
+            <label>ชื่อลูกค้า</label>
+          </div>
+          <div class="col-lg-11 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="customerName"
+              placeholder="ชื่อลูกค้า"
+              style="width: 100%"
+            />
+          </div>
+          <div class="col-lg-1 col-md-2 col-12 pt-2">
+            <label>เบอร์ติดต่อ</label>
+          </div>
+          <div class="col-lg-11 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="phoneNumber"
+              placeholder="เบอร์ติดต่อ"
+              style="width: 100%"
+            />
+          </div>
+          <div class="col-lg-1 col-md-2 col-12 pt-2">
+            <label>ที่อยู่</label>
+          </div>
+          <div class="col-lg-11 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="address"
+              placeholder="ที่อยู่"
+              style="width: 100%"
+            />
+          </div>
+          <div class="col-lg-1 col-md-2 col-12 pt-2">
+            <label>ID Line</label>
+          </div>
+          <div class="col-lg-11 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="lineId"
+              placeholder="ID Line"
+              style="width: 100%"
+            />
+          </div>
+          <div class="col-lg-1 col-md-2 col-12 pt-2">
+            <label>รหัสพนักงาน</label>
+          </div>
+          <div class="col-lg-11 col-md-10 col-12 mb-3">
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="employeeId"
+              placeholder="รหัสผนักงาน"
+              style="width: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <div class="card card-body px-1 px-md-5">
+        <div class="row">
+          <div class="col-12">
+            <span class="fs-6 fw-bold">รายการผ้า</span>
+          </div>
+          <div class="col-12 mt-2">
+            <div class="card card-body cloth-list-group p-1">
+              <ng-container *ngIf="clothList.length > 0; else onClothList">
+                <div
+                  *ngFor="let cloth of clothList; let i = index"
+                  class="
+                    card card-list
+                    d-flex
+                    justify-content-center
+                    mt-1
+                    px-lg-5 px-md-3 px-1
+                  "
+                >
+                  <div class="row">
+                    <div
+                      class="
+                        col-12 col-md-5 col-lg-6
+                        mt-0 mt-md-2
+                        text-center text-md-start
+                      "
+                    >
+                      <span *ngIf="!!cloth.cloth_type"
+                        >{{ cloth.cloth_type }} ,</span
+                      >
+                      <span *ngIf="!!cloth.special_type"
+                        >{{ cloth.special_type }} ,</span
+                      >
+                      <span *ngIf="!!cloth.type_used_cloth"
+                        >{{ cloth.type_used_cloth }} ,</span
+                      >
+                      <ng-container>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.broken === true
+                              ? "ผ้าขาด ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.burn === true
+                              ? "รอยไหม้ ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.buttons_fall_off === true
+                              ? "กระดุมหลุด ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.fall_color === true
+                              ? "สีตก ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.wrinkles === true
+                              ? "รอยยับ ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.flaky === true
+                              ? "เป็นขุย ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.broken_zipper === true
+                              ? "ซิปแตก ,"
+                              : null
+                          }}
+                        </span>
+                        <span
+                          >{{
+                            cloth.damaged_cloth?.stain === true
+                              ? "เปื้อน ,"
+                              : null
+                          }}
+                        </span>
+                      </ng-container>
+                    </div>
+                    <div
+                      class="
+                        col-12 col-md-7 col-lg-6
+                        d-flex
+                        justify-content-center justify-content-md-end
+                        align-items-center
+                        mt-1 mt-md-0
+                      "
+                    >
+                      <p-inputNumber
+                        [(ngModel)]="cloth.number"
+                        [showButtons]="true"
+                        buttonLayout="horizontal"
+                        inputId="horizontal"
+                        spinnerMode="horizontal"
+                        [step]="1"
+                        [size]="1"
+                        [min]="1"
+                        decrementButtonClass="p-button-danger"
+                        incrementButtonClass="p-button-success"
+                        incrementButtonIcon="pi pi-plus"
+                        decrementButtonIcon="pi pi-minus"
+                        [inputStyle]="{ height: '35px' }"
+                        [style]="{ height: '35px' }"
+                      >
+                      </p-inputNumber>
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="fas fa-edit"
+                        class="p-button-warning mx-2"
+                        (click)="onEditClothOption(i)"
+                      ></button>
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="fas fa-trash"
+                        class="p-button-danger"
+                        (click)="onDeleteClothList(i)"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #onClothList>
+                <div class="text-center" style="margin-top: 4%">
+                  <span class="fs-5 fw-bolder">ไม่มีรายการผ้าที่เลือก</span>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end mt-3">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="เพิ่มรายการผ้า"
+              icon="fas fa-plus"
+              class="p-button-raised p-button-success"
+              (click)="onAddClothOption()"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-4">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="ยืนยันการเพิ่มข้อมูลรับผ้า"
+        class="p-button-raised p-button-info w-100"
+        (click)="onSubmit()"
+      ></button>
+    </div>
+  </div>
+</div>

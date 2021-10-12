@@ -1,0 +1,64 @@
+<div class="col-xl-12 mb-5 mb-xl-0 mt-4">
+    <div class="col-12 text-left ms-4 mb-4">
+      <span class="fs-5 fw-bolder">รายการประเภทการใช้งาน</span>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-6 mb-2">
+          </div>
+          <div class="col-6" style="text-align: right">
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText placeholder="Search" />
+            </span>
+          </div>
+        </div>
+      </div>
+      <p-table
+        [columns]="cols"
+        [value]="usedtypeList"
+        styleClass="p-datatable-responsive-demo"
+        editMode="row"
+        dataKey="code"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 6rem">ลำดับ</th>
+            <th>รหัส</th>
+            <th>ชื่อประเภทการใช้งาน</th>
+            <th style="width: 20rem"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pEditableRow]="rowData">
+            <td *ngFor="let col of columns">
+              <span class="p-column-title">{{ col.header }}</span>
+              {{ rowData[col.field] }}
+            </td>
+            <td>
+                <button
+                pButton
+                pRipple
+                icon="fa fa-pen"
+                class="p-button-rounded p-button-warning me-4"
+              ></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-eye"
+                class="p-button-rounded p-button-success me-4"
+              ></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  

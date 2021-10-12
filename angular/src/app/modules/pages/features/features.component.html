@@ -1,13 +1,13 @@
 <div class="fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="collapse navbar-collapse" id="btnToggleNavbar">
+  <nav class="navbar navbar-expand-lg navbar">
+    <div class="d-flex justify-content-between w-100">
       <button
         pButton
         pRipple
         type="button"
         class="
           p-button-secondary p-button-text
-          text-dark
+          text-white
           fs-4
           fw-bolder
           p-0
@@ -16,21 +16,183 @@
         (click)="showSidebar = true"
         icon="fas fa-bars"
       ></button>
+      <div class="me-1">
+        <button
+          pButton
+          pRipple
+          icon="fas fa-bell"
+          class="p-button p-button-white me-sm-3 me-1"
+          type="button"
+        ></button>
+        <!-- <i class=" text-warning fs-5 me-3"></i> -->
+        <div class="btn-group">
+          <button
+            pButton
+            pRipple
+            class="p-button p-button-white me-3 btn-sm dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="padding: 2px 10px"
+          >
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNBs9g5o_UsSJ9BkCDhXT0uj4Mxn6UtXMbqA&usqp=CAU"
+              alt="user profile"
+              class="image-profile me-2"
+            />
+            <span class="me-3 text-white">username user</span>
+          </button>
+          <div class="dropdown-menu text-left">
+            <a
+              class="dropdown-item"
+              routerLink="./profile"
+              (click)="onToggleMenu('none')"
+              >My Profile</a
+            >
+            <a
+              class="dropdown-item"
+              routerLink="./../login"
+              (click)="onToggleMenu('none')"
+              >ออกจากระบบ</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
-
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#btnToggleNavbar"
-      aria-controls="btnToggleNavbar"
-      aria-expanded="false"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
   </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>
 
 <!-- TODO: Content Menu Sidebar -->
-<p-sidebar [(visible)]="showSidebar" [baseZIndex]="999"> Menu </p-sidebar>
+<p-sidebar
+  [(visible)]="showSidebar"
+  [baseZIndex]="999"
+  [style]="{ backgroundColor: '#28252F' }"
+>
+  <div class="row">
+    <div
+      class="col-12 d-flex justify-content-center"
+      routerLink="./dashboard"
+      style="cursor: pointer"
+    >
+      <img
+        src="./../../../../assets/images/washing-machine.png"
+        alt="Logo"
+        class="logo"
+      />
+    </div>
+    <div
+      class="col-12 mt-3 text-center"
+      routerLink="./dashboard"
+      style="cursor: pointer"
+    >
+      <p class="text-white fw-4 fw-bold font-logo">Wantana Laundry</p>
+    </div>
+    <div class="col-12 p-0">
+      <div class="nav flex-column nav-pills">
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./dashboard"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >หน้าหลัก</a
+        >
+        <a class="nav-link my-2" (click)="onToggleMenu('manage-cloth')">
+          <div class="d-flex justify-content-between">
+            <span>จัดการผ้า</span>
+            <i
+              class="fas"
+              [ngClass]="
+                currentRoute === 'manage-cloth' || manageClothMenu === true
+                  ? 'fa-caret-down'
+                  : 'fa-caret-left'
+              "
+            ></i>
+          </div>
+          <div
+            *ngIf="currentRoute === 'manage-cloth' || manageClothMenu === true"
+            class="nav flex-column nav-pills sub-nav mt-2"
+          >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth/add-cloth"
+              routerLinkActive="active"
+              >เพิ่มข้อมูลรับผ้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth/edit-cloth"
+              routerLinkActive="active"
+              >แก้ไขข้อมูลรับผ้า</a
+            >
+            <a
+              class="nav-link nav-link-main"
+              routerLink="./manage-cloth/cloth-list"
+              routerLinkActive="active"
+              >รายการรับผ้า</a
+            >
+          </div>
+        </a>
+        <a
+          class="nav-link nav-link my-2"
+          routerLink="./manage-customer"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการลูกค้า</a
+        >
+        <a
+          class="nav-link nav-link my-2"
+          routerLink="./manage-employee"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการพนักงาน</a
+        >
+        <a
+          class="nav-link nav-link my-2"
+          routerLink="./manage-damaged-cloth"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการผ้ามีปัญหา</a
+        >
+        <a
+          class="nav-link nav-link my-2"
+          routerLink="./manage-cloth-type"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการชนิดผ้า</a
+        >
+        <a
+          class="nav-link nav-link my-2"
+          routerLink="./manage-type-used-cloth"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการประเภทการใช้งาน</a
+        >
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./manage-messenger-line"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการข้อความไลน์</a
+        >
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./manage-status"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >จัดการสถานะ</a
+        >
+        <a
+          class="nav-link nav-link-main my-2"
+          routerLink="./report"
+          routerLinkActive="active"
+          (click)="onToggleMenu('none')"
+          >รายงาน</a
+        >
+      </div>
+    </div>
+  </div>
+</p-sidebar>

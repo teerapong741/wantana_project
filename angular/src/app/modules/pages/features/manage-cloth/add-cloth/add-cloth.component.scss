@@ -1,0 +1,22 @@
+.container-fluid {
+  height: 95vh;
+  overflow-y: auto;
+}
+
+.card{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border-radius: 5px;
+}
+.cloth-list-group {
+  overflow: auto;
+  min-height: 150px;
+  max-height: 300px;
+  background: #ffffff;
+  box-shadow: inset 4px -4px 12px #d6d6d6, inset -4px 4px 12px #ffffff;
+}
+
+.card-list {
+  min-height: 75px;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
